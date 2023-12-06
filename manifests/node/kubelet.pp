@@ -66,7 +66,7 @@ class k8s::node::kubelet (
   case $auth {
     'bootstrap': {
       $_ca_cert = pick($ca_cert, '/var/lib/kubelet/pki/ca.pem')
-      ensure_packages(['jq'])
+      stdlib::ensure_packages(['jq'])
       if !defined(K8s::Binary['kubectl']) {
         k8s::binary { 'kubectl':
           ensure => $ensure,
@@ -203,7 +203,7 @@ class k8s::node::kubelet (
 
   file { '/etc/kubernetes/kubelet.conf':
     ensure  => $ensure,
-    content => to_yaml($config_hash + $config),
+    content => stdlib::to_yaml($config_hash + $config),
     owner   => $k8s::user,
     group   => $k8s::group,
     notify  => Service['kubelet'],

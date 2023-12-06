@@ -40,7 +40,7 @@ class k8s::install::cni_plugins (
       }
     }
     'package':{
-      ensure_packages(['containernetworking-plugins',])
+      stdlib::ensure_packages(['containernetworking-plugins',])
 
       file { '/opt/cni/bin':
         ensure  => link,

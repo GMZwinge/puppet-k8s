@@ -4,5 +4,8 @@ classes:
 
 ### K8S::Node
 # see common.yaml for the origin of the data
-k8s::node::node_token: "puppet.%{lookup('k8s::server::resources::bootstrap::secret')}"
+lookup_options:
+  k8s::node::node_token:
+    convert_to: Sensitive
+k8s::node::node_token: "puppet.%{lookup('k8s::server::secret')}"
 k8s::node::manage_crictl: true

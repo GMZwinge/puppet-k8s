@@ -8,4 +8,8 @@ k8s::install::crictl::config:
 
 # set token in an upper level, so that it can be used by controller and worker
 # see also worker.yaml for usage
-k8s::server::resources::bootstrap::secret: '0123456789abcdef'
+k8s::server::secret: '0123456789abcdef'
+lookup_options:
+  k8s::server::resources::bootstrap::secret:
+    convert_to: Sensitive
+k8s::server::resources::bootstrap::secret: "%{lookup('k8s::server::secret')}"

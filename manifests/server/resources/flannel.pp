@@ -130,7 +130,7 @@ class k8s::server::resources::flannel (
           },
         },
         data     => {
-          'cni-conf.json' => to_json({
+          'cni-conf.json' => stdlib::to_json({
               name       => 'cbr0',
               cniVersion => '0.3.1',
               plugins    => [

@@ -161,7 +161,7 @@ class k8s (
       $_conntrack = 'conntrack-tools'
     }
 
-    ensure_packages([$_conntrack,])
+    stdlib::ensure_packages([$_conntrack,])
   }
 
   include k8s::install::cni_plugins

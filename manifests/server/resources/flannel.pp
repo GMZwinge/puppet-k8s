@@ -149,7 +149,7 @@ class k8s::server::resources::flannel (
                 },
               ],
           }),
-          'net-conf.json' => $_net_conf.to_json(),
+          'net-conf.json' => stdlib::to_json($_net_conf),
         },
       };
 
